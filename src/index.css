@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 min-w-[320px] overflow-x-hidden bg-page-gradient font-body text-navy antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-strong;
+  }
+}
+
+@layer components {
+  .section-panel {
+    @apply rounded-panel bg-white p-8 shadow-panel md:p-10 lg:p-14;
+  }
+
+  .photo-tint::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] bg-photo-overlay;
+  }
+
+  .pricing-run-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 160%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background:
+      conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 250deg,
+        #ffffff 292deg,
+        #2f80c9 328deg,
+        #7db9e8 352deg,
+        transparent 360deg
+      ),
+      linear-gradient(#b7d7f1, #b7d7f1);
+    animation: pricing-border-run 2.8s linear infinite;
+  }
+
+  .pricing-run-layer.is-strong {
+    background:
+      conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 220deg,
+        #ffffff 270deg,
+        #1f2a37 318deg,
+        #2f80c9 346deg,
+        transparent 360deg
+      ),
+      linear-gradient(#8ebfed, #8ebfed);
+    animation-duration: 2.2s;
+  }
+
+  .pricing-run-layer.is-still {
+    animation: none;
+    background: linear-gradient(135deg, #7db9e8, #2f80c9);
+  }
+}
+
+@keyframes pricing-border-run {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-run-layer {
+    animation: none;
+    background: linear-gradient(135deg, #7db9e8, #2f80c9);
+  }
+}
