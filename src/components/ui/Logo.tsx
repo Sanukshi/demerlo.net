@@ -9,9 +9,9 @@ type LogoProps = {
 function LogoMark({ inverted = false }: { inverted?: boolean }) {
   if (inverted) {
     return (
-      <span className="inline-flex items-center gap-2 text-white">
-        <img src={images.mark} alt="" className="h-9 w-9" />
-        <span className="font-heading text-[13px] font-extrabold leading-none tracking-[0.12em]">
+      <span className="inline-flex items-center gap-2.5 text-white">
+        <img src={images.mark} alt="" className="h-11 w-11 object-contain" />
+        <span className="font-heading text-[15px] font-extrabold leading-none tracking-[0.12em]">
           DEMERLO
         </span>
       </span>
@@ -19,14 +19,11 @@ function LogoMark({ inverted = false }: { inverted?: boolean }) {
   }
 
   return (
-    <span className="relative inline-block h-10 w-[132px] overflow-hidden" aria-hidden="true">
-      <img
-        src={images.logo}
-        alt=""
-        className="absolute max-w-none"
-        style={{ width: '157%', left: '-24%', top: '-72%' }}
-      />
-    </span>
+    <img
+      src={images.logoMark}
+      alt=""
+      className="h-11 w-auto max-w-[190px] object-contain object-left md:h-12 md:max-w-[210px]"
+    />
   )
 }
 
@@ -36,7 +33,7 @@ export function Logo({ className = '', inverted = false, href = '#about' }: Logo
   if (!href) return <span className={className}>{mark}</span>
 
   return (
-    <a href={href} className={className} aria-label="Demerlo home">
+    <a href={href} className={['inline-flex items-center', className].join(' ')} aria-label="Demerlo home">
       {mark}
     </a>
   )

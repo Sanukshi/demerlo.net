@@ -17,7 +17,7 @@ const iconMap: Record<(typeof readiness.cards)[number]['icon'], LucideIcon> = {
 export function Readiness() {
   return (
     <SectionShell id="readiness" bare>
-      <div className="relative isolate overflow-hidden rounded-panel shadow-panel">
+      <div className="surface-dark relative isolate overflow-hidden rounded-panel shadow-panel">
         <TintedImage
           src={images.readiness}
           alt={readiness.imageAlt}
@@ -26,8 +26,9 @@ export function Readiness() {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-navy/55 via-navy/20 to-navy/10"
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--dark-section)]/70 via-[var(--dark-section)]/35 to-[var(--brand)]/20"
         />
+        <div aria-hidden="true" className="section-blobs" />
 
         <div className="flex min-h-[560px] flex-col justify-between gap-12 p-8 md:p-10 lg:min-h-[620px] lg:p-14">
           <Reveal>

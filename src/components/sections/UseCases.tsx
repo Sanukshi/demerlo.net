@@ -51,7 +51,8 @@ export function UseCases() {
   const active = useCases.items.find((i) => i.id === activeId) ?? useCases.items[1]
 
   return (
-    <SectionShell id="use-cases">
+    <SectionShell id="use-cases" surface="white">
+      <div aria-hidden="true" className="section-blobs opacity-60" />
       <Reveal>
         <SectionTitle dark={useCases.titleDark} accent={useCases.titleAccent} />
       </Reveal>
@@ -67,10 +68,12 @@ export function UseCases() {
                 <Reveal delay={i * 0.1} className="h-full">
                   <div
                     className={[
-                      'flex h-full items-center gap-3 rounded-card p-4 shadow-card transition-colors duration-200 md:p-5',
+                      'card-accent flex h-full items-center gap-3 rounded-card p-4 transition-colors duration-200 md:p-5',
                       isActive
-                        ? 'border border-transparent bg-strong text-white'
-                        : styles.row,
+                        ? 'border border-transparent bg-[var(--brand)] text-white shadow-card'
+                        : item.defaultVariant === 'white'
+                          ? 'card-on-white text-navy'
+                          : styles.row,
                     ].join(' ')}
                   >
                     <button

@@ -20,7 +20,7 @@ export function IconBadge({
     <span
       className={[
         'inline-flex items-center justify-center rounded-full',
-        onDark ? 'bg-white/15 text-accent' : 'bg-pale text-strong',
+        onDark ? 'bg-white/15 text-accent' : 'icon-chip',
         dim,
         className,
       ].join(' ')}

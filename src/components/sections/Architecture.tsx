@@ -88,29 +88,16 @@ export function Architecture() {
   }, [reduceMotion])
 
   return (
-    <SectionShell id="architecture">
+    <SectionShell id="architecture" surface="soft">
+      <div aria-hidden="true" className="section-blobs" />
       <Reveal>
         <SectionTitle dark={architecture.titleDark} accent={architecture.titleAccent} />
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">{architecture.lead}</p>
       </Reveal>
 
-      <div className="relative mt-10 overflow-hidden rounded-[28px] border border-soft bg-[linear-gradient(165deg,#F8FBFE_0%,#E7F3FB_55%,#F7F9FB_100%)] px-4 py-8 shadow-card md:px-8 md:py-10">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(circle,#b7d4ea_1.1px,transparent_1.1px)] [background-size:20px_20px]"
-        />
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-16 top-8 h-40 w-40 rounded-full bg-accent/30 blur-3xl"
-          animate={reduceMotion ? undefined : { x: [0, 24, 0], y: [0, 12, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-10 bottom-6 h-44 w-44 rounded-full bg-strong/15 blur-3xl"
-          animate={reduceMotion ? undefined : { x: [0, -18, 0], y: [0, -10, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        />
+      <div className="relative mt-10 overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--white)] px-4 py-8 shadow-card md:px-8 md:py-10">
+        <div aria-hidden="true" className="section-dots" />
+        <div aria-hidden="true" className="section-blobs" />
 
         <div className="relative flex items-center gap-2">
           <span className="relative flex h-2.5 w-2.5">

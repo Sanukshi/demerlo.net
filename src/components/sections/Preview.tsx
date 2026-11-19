@@ -16,7 +16,7 @@ import { SectionTitle } from '../ui/SectionTitle'
 import { PillTag } from '../ui/PillTag'
 import { Reveal } from '../ui/Reveal'
 
-const PIE_COLORS = ['#2F80C9', '#7DB9E8', '#CFE6F7', '#5BA3D9', '#1F6FB8']
+const PIE_COLORS = ['#3760F9', '#6B85FB', '#DAD9FB', '#D2FC59', '#2A4DD4']
 
 function Panel({
   title,
@@ -30,7 +30,7 @@ function Panel({
   return (
     <section
       aria-label={title}
-      className={['rounded-card border border-navy/10 bg-white p-4 shadow-card md:p-5', className].join(' ')}
+      className={['card-on-soft card-accent rounded-card p-4 md:p-5', className].join(' ')}
     >
       <h3 className="font-heading text-sm font-bold text-navy">{title}</h3>
       {children}
@@ -42,13 +42,14 @@ export function Preview() {
   const appHost = site.appUrl.replace(/^https?:\/\//, '')
 
   return (
-    <SectionShell id="preview">
+    <SectionShell id="preview" surface="white">
+      <div aria-hidden="true" className="section-blobs opacity-50" />
       <Reveal>
         <SectionTitle dark={preview.titleDark} accent={preview.titleAccent} />
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        <div className="overflow-hidden rounded-card border border-navy/10 bg-page-light shadow-lift">
+        <div className="overflow-hidden rounded-card border border-[var(--border)] bg-[var(--soft-grey)] shadow-lift">
           {/* Browser chrome */}
           <div className="flex items-center gap-3 border-b border-navy/10 bg-white px-4 py-3">
             <div className="flex items-center gap-1.5" aria-hidden="true">
@@ -70,7 +71,7 @@ export function Preview() {
               {preview.stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-card border border-navy/10 bg-white p-4 shadow-card"
+                  className="card-on-soft card-accent rounded-card p-4"
                 >
                   <dt className="text-xs font-medium text-muted">{stat.label}</dt>
                   <dd className="mt-1.5 font-heading text-2xl font-extrabold text-navy md:text-3xl">
@@ -155,7 +156,7 @@ export function Preview() {
                         cursor={{ fill: 'rgba(125,185,232,0.15)' }}
                         formatter={(v: number) => [v, 'Requests']}
                       />
-                      <Bar dataKey="count" fill="#2F80C9" radius={[6, 6, 0, 0]} maxBarSize={44} />
+                      <Bar dataKey="count" fill="#3760F9" radius={[6, 6, 0, 0]} maxBarSize={44} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>

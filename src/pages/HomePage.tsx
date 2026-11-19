@@ -29,7 +29,7 @@ export function HomePage() {
   }, [pathname, hash])
 
   return (
-    <div id="top" className="min-h-screen bg-page-gradient">
+    <div id="top" className="min-h-screen bg-[var(--soft-grey)]">
       <Navbar />
       <main className="space-y-6 pb-10 md:space-y-8 md:pb-14">
         <Hero />

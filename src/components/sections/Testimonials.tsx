@@ -31,14 +31,17 @@ export function Testimonials() {
 
   return (
     <SectionShell id="testimonials" bare>
-      <div className="rounded-[32px] bg-[linear-gradient(165deg,#8EC4EE_0%,#4E97D1_48%,#2B74B8_100%)] px-4 py-10 md:px-8 md:py-14">
-        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[28px] bg-white px-4 py-8 shadow-panel md:px-10 md:py-12">
+      <div className="surface-soft relative overflow-hidden rounded-[32px] px-4 py-10 md:px-8 md:py-14">
+        <div aria-hidden="true" className="section-blobs" />
+        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--white)] px-4 py-8 shadow-panel md:px-10 md:py-12">
+          <div aria-hidden="true" className="section-dots hidden md:block" />
           <div aria-hidden="true" className="pointer-events-none absolute right-8 top-8 hidden gap-3 md:flex">
-            <span className="h-14 w-12 rounded-t-[16px] border-2 border-navy/10" />
-            <span className="mt-3 h-16 w-12 rounded-t-[16px] border-2 border-navy/10" />
+            <span className="h-14 w-12 rounded-t-[16px] border-2 border-[var(--border)]" />
+            <span className="mt-3 h-16 w-12 rounded-t-[16px] border-2 border-[var(--border)]" />
           </div>
 
           <div className="relative mx-auto max-w-xl text-center">
+            <span aria-hidden="true" className="heading-bar mx-auto" />
             <p className="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-strong">
               {testimonials.eyebrow}
             </p>
@@ -61,10 +64,10 @@ export function Testimonials() {
               >
                 <article
                   className={[
-                    'relative flex h-full flex-col rounded-[22px] p-5',
+                    'card-accent relative flex h-full flex-col rounded-[22px] p-5',
                     item.highlighted
-                      ? 'bg-[linear-gradient(180deg,#2F80C9_0%,#1F6AAD_100%)] text-white shadow-lift'
-                      : 'border border-navy/5 bg-white text-navy shadow-card',
+                      ? 'bg-[linear-gradient(180deg,var(--brand)_0%,var(--brand-dark)_100%)] text-white shadow-lift'
+                      : 'card-on-white text-navy',
                   ].join(' ')}
                 >
                   {item.highlighted && (

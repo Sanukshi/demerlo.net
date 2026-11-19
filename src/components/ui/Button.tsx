@@ -17,13 +17,13 @@ type ButtonProps = ButtonAsButton | ButtonAsLink
 
 const variants: Record<NonNullable<CommonProps['variant']>, string> = {
   primary:
-    'bg-strong text-white hover:bg-[#2569a8] shadow-sm border border-transparent',
+    'bg-[var(--brand)] text-white hover:bg-[var(--brand-dark)] shadow-sm border border-transparent',
   secondary:
     'bg-white/90 text-navy hover:bg-white border border-white/70 backdrop-blur-sm',
   outline:
-    'bg-transparent text-navy border border-navy/20 hover:border-strong hover:text-strong',
-  ghost: 'bg-transparent text-navy/80 hover:text-strong border border-transparent',
-  dark: 'bg-dark text-white hover:bg-navy border border-transparent',
+    'bg-transparent text-[var(--brand)] border border-[var(--brand)]/35 hover:bg-[var(--brand-tint)] hover:border-[var(--brand)]',
+  ghost: 'bg-transparent text-navy/80 hover:text-[var(--brand)] border border-transparent',
+  dark: 'bg-[var(--dark-section)] text-white hover:bg-[var(--brand-dark)] border border-transparent',
 }
 
 const sizes: Record<NonNullable<CommonProps['size']>, string> = {

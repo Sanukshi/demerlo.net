@@ -8,6 +8,7 @@ import clientPriya from './graphics/client-priya.png'
 import clientJames from './graphics/client-james.png'
 import clientLena from './graphics/client-lena.png'
 import logo from './graphics/logo.png'
+import logoMark from './graphics/logo-mark.png'
 import mark from './graphics/mark.png'
 import iconChallengeProduct from './graphics/icon-challenge-product.png'
 import iconChallengePreference from './graphics/icon-challenge-preference.png'
@@ -35,6 +36,7 @@ export const images = {
   clientJames,
   clientLena,
   logo,
+  logoMark,
   mark,
   iconChallengeProduct,
   iconChallengePreference,

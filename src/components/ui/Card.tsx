@@ -12,10 +12,10 @@ type CardProps = {
 }
 
 const variants: Record<CardVariant, string> = {
-  white: 'bg-white text-navy',
-  soft: 'bg-soft text-navy',
-  dark: 'bg-dark text-white',
-  pale: 'bg-pale text-navy',
+  white: 'card-on-soft text-navy',
+  soft: 'bg-[var(--brand-tint)] text-navy',
+  dark: 'bg-[var(--dark-section)] text-white',
+  pale: 'bg-[var(--brand-tint)] text-navy',
 }
 
 const paddings = {

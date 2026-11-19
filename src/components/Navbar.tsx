@@ -1,22 +1,73 @@
 import { MouseEvent, useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { hero, navLinks } from '../data/content'
 import { Logo } from './ui/Logo'
+
+const sectionIds = [
+  'about',
+  'challenges',
+  'modules',
+  'use-cases',
+  'architecture',
+  'plans',
+  'contact',
+] as const
+
+function sectionFromHref(href: string) {
+  if (href === '/home') return 'about'
+  if (href.includes('#')) return href.split('#')[1]
+  return ''
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('about')
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const updateActive = () => {
+      const y = window.scrollY
+      setScrolled(y > 24)
+
+      // Match fixed header + scroll-mt so the in-view section highlights
+      const marker = 200
+      let current: string = 'about'
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        if (el.getBoundingClientRect().top <= marker) current = id
+      }
+
+      const atBottom =
+        window.innerHeight + y >= document.documentElement.scrollHeight - 80
+      if (atBottom) current = sectionIds[sectionIds.length - 1]
+
+      setActiveSection((prev) => {
+        if (prev === current) return prev
+        if (pathname === '/') {
+          window.history.replaceState(
+            null,
+            '',
+            current === 'about' ? '/' : `/#${current}`,
+          )
+        }
+        return current
+      })
+    }
+
+    updateActive()
+    window.addEventListener('scroll', updateActive, { passive: true })
+    window.addEventListener('resize', updateActive)
+    return () => {
+      window.removeEventListener('scroll', updateActive)
+      window.removeEventListener('resize', updateActive)
+    }
+  }, [pathname])
 
   useEffect(() => {
     if (!open) return
@@ -41,48 +92,59 @@ export function Navbar() {
 
     if (href === '/home') {
       e.preventDefault()
+      setActiveSection('about')
       if (pathname !== '/home') navigate('/home')
-      else window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       setOpen(false)
       return
     }
 
-    const hash = href.startsWith('/#') ? href.slice(1) : href.startsWith('#') ? href : ''
-    if (!hash || hash.length < 2) return
+    const nextHash = href.startsWith('/#') ? href.slice(1) : href.startsWith('#') ? href : ''
+    if (!nextHash || nextHash.length < 2) return
 
     e.preventDefault()
-    const id = hash.slice(1)
+    const id = nextHash.slice(1)
+    setActiveSection(id)
+
     const scroll = () => {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     if (pathname !== '/') {
-      navigate({ pathname: '/', hash })
-      window.setTimeout(scroll, 0)
+      navigate({ pathname: '/', hash: nextHash })
+      window.setTimeout(scroll, 50)
     } else {
-      window.history.replaceState(null, '', hash)
+      window.history.replaceState(null, '', nextHash)
       scroll()
     }
     setOpen(false)
   }, [navigate, pathname])
 
   const linkClass = scrolled
-    ? 'text-sm font-medium text-navy/80 transition-colors hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy'
-    : 'text-sm font-medium text-white/90 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white'
+    ? 'nav-link text-navy/70 hover:!bg-navy/8 hover:!text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy'
+    : 'nav-link text-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white'
+
+  const shellClass = scrolled
+    ? 'nav-link-shell border-navy/8 bg-white/90 shadow-[0_8px_24px_rgba(31,42,55,0.08)] backdrop-blur-md'
+    : 'nav-link-shell border-white/12 bg-white/[0.08] shadow-[0_10px_28px_rgba(14,26,40,0.22)] backdrop-blur-md'
 
   return (
     <header
       onClick={handleAnchorClick}
       className={[
-        'fixed inset-x-0 z-50 px-4 transition-all duration-300 md:px-6',
-        scrolled ? 'top-0 bg-white/95 py-3 shadow-[0_8px_24px_rgba(31,42,55,0.08)] backdrop-blur-md' : 'top-6',
+        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
+        scrolled
+          ? 'bg-white/95 py-3 shadow-[0_8px_24px_rgba(31,42,55,0.08)] backdrop-blur-md'
+          : 'bg-[#17161B]/55 py-0 backdrop-blur-[2px]',
       ].join(' ')}
     >
-      <div className="relative mx-auto flex max-w-[1280px] items-center justify-between">
+      <div className="relative flex min-h-[72px] w-full items-center justify-between lg:min-h-[76px]">
         <div
           className={[
-            'relative z-10 bg-white',
-            scrolled ? 'rounded-full px-3 py-2' : 'rounded-br-[36px] px-4 pb-4 pt-3',
+            'relative z-10 flex h-full items-center bg-white',
+            scrolled
+              ? 'ml-4 rounded-full px-4 py-2 md:ml-6'
+              : 'rounded-br-[36px] px-5 py-4 md:px-7 md:py-5',
           ].join(' ')}
         >
           {!scrolled && (
@@ -99,25 +161,45 @@ export function Navbar() {
               />
             </>
           )}
-          <Logo href="#about" />
+          <Logo href="/home" />
         </div>
 
-        <nav aria-label="Primary" className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
-          <ul className="flex items-center gap-7">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} className={linkClass}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
+        <nav
+          aria-label="Primary"
+          className="pointer-events-none absolute inset-x-0 top-1/2 hidden -translate-y-1/2 justify-center lg:flex"
+        >
+          <ul className={['pointer-events-auto', shellClass].join(' ')}>
+            {navLinks.map((link) => {
+              const section = sectionFromHref(link.href)
+              const isActive = activeSection === section
+
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={[
+                      linkClass,
+                      isActive
+                        ? scrolled
+                          ? 'is-active !bg-navy/10 !text-navy font-semibold'
+                          : 'is-active font-semibold'
+                        : '',
+                    ].join(' ')}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </nav>
 
         <div
           className={[
-            'relative z-10 hidden items-center gap-2 bg-white lg:flex',
-            scrolled ? 'rounded-full p-1' : 'rounded-bl-[36px] px-5 pb-5 pt-3',
+            'relative z-10 hidden h-full items-center bg-white lg:flex',
+            scrolled
+              ? 'mr-4 rounded-full p-1.5 md:mr-6'
+              : 'rounded-bl-[36px] px-5 py-4 md:px-7 md:py-5',
           ].join(' ')}
         >
           {!scrolled && (
@@ -136,22 +218,15 @@ export function Navbar() {
           )}
           <a
             href="#contact"
-            className="inline-flex items-center rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#111820] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            className="inline-flex items-center whitespace-nowrap rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#111820] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
           >
             {hero.primaryCta}
-          </a>
-          <a
-            href="#contact"
-            aria-label="Request a Demo"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white transition-colors hover:bg-[#111820] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-          >
-            <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy lg:hidden"
+          className="mr-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy md:mr-6 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -170,16 +245,26 @@ export function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="mx-auto mt-3 max-w-[1280px] overflow-hidden rounded-2xl bg-white shadow-card lg:hidden"
+            className="mx-4 mt-3 overflow-hidden rounded-2xl bg-white shadow-card md:mx-6 lg:hidden"
           >
-            <ul className="flex flex-col p-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="block rounded-lg px-3 py-3 text-base font-medium text-navy">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+            <ul className="flex flex-col gap-1 p-3">
+              {navLinks.map((link) => {
+                const section = sectionFromHref(link.href)
+                const isActive = activeSection === section
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className={[
+                        'block rounded-lg px-3 py-3 text-base font-medium',
+                        isActive ? 'bg-pale text-navy' : 'text-navy',
+                      ].join(' ')}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                )
+              })}
               <li className="px-3 pt-2">
                 <a href="#contact" className="block rounded-full bg-navy px-4 py-2.5 text-center text-sm font-semibold text-white">
                   {hero.primaryCta}

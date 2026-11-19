@@ -39,14 +39,15 @@ export function Challenges() {
 
   return (
     <SectionShell id="challenges" bare>
-      <div className="relative isolate overflow-hidden rounded-panel bg-navy p-6 shadow-panel md:p-10 lg:p-14">
+      <div className="surface-dark relative isolate overflow-hidden rounded-panel p-6 shadow-panel md:p-10 lg:p-14">
         <TintedImage
           src={images.challenges}
           alt={challenges.imageAlt}
           rounded="rounded-panel"
           className="!absolute inset-0 -z-20 h-full w-full"
         />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy/80" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[var(--dark-section)]/80" />
+        <div aria-hidden="true" className="section-blobs" />
 
         <Reveal>
           <SectionTitle dark={challenges.titleDark} accent={challenges.titleAccent} invert />
@@ -71,12 +72,13 @@ export function Challenges() {
                   className={[
                     'flex h-full flex-col rounded-[24px] p-5 shadow-lift md:p-6',
                     isDark
-                      ? 'bg-[linear-gradient(180deg,#243140_0%,#1B2430_100%)] text-white'
+                      ? 'bg-[linear-gradient(180deg,#2A2A45_0%,var(--dark-section)_100%)] text-white'
                       : isSoft
-                        ? 'bg-[linear-gradient(180deg,#F4FAFE_0%,#E7F3FB_100%)] text-navy'
+                        ? 'card-on-soft text-navy'
                         : 'bg-white text-navy',
+                    'card-accent',
                   ].join(' ')}
-                  whileHover={reduceMotion ? undefined : { y: -6 }}
+                  whileHover={reduceMotion ? undefined : { y: -2 }}
                   transition={{ duration: 0.25 }}
                 >
                   <div className="flex items-center justify-between">

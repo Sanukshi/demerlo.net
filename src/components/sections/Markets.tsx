@@ -77,8 +77,9 @@ function TeamCard({ title, roles }: { title: string; roles: string[] }) {
 
 export function Markets() {
   return (
-    <SectionShell id="markets" panelClassName="relative isolate overflow-hidden bg-blue-panel">
+    <SectionShell id="markets" panelClassName="surface-brand relative isolate overflow-hidden">
       <DottedMap />
+      <div aria-hidden="true" className="section-blobs" />
 
       <Reveal>
         <SectionTitle

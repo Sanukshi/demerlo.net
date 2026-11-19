@@ -29,7 +29,7 @@ export const hero = {
   summary:
     'Discover a smarter approach to online shopping with conversational product discovery, customer preference insights, and organized recommendation workflows designed to make every shopping interaction more relevant and engaging.',
   imageAlt: 'A laptop showing a product page beside shopping bags and a cart',
-  primaryCta: 'Request a Demo',
+  primaryCta: 'Demerlo ShopSense V2.0',
   secondaryCta: 'View Application Preview',
   secondaryHref: '#preview',
 }
@@ -79,6 +79,8 @@ export const modules = {
       number: '01',
       icon: 'Package' as const,
       title: 'Product Catalogue Management',
+      description:
+        'Register products, keep catalogue details up to date, and control product status so shoppers always see accurate listings.',
       bullets: [
         'Product Registration',
         'Information Updates',
@@ -89,6 +91,8 @@ export const modules = {
       number: '02',
       icon: 'Users' as const,
       title: 'Customer Profile Management',
+      description:
+        'Maintain customer records, preference data, and activity history in one place to support more relevant product discovery.',
       bullets: [
         'Customer Records',
         'Preference Tracking',
@@ -99,6 +103,8 @@ export const modules = {
       number: '03',
       icon: 'Sparkles' as const,
       title: 'Recommendation Management',
+      description:
+        'Capture recommendation requests, link suggested products, and monitor request status across the shopping journey.',
       bullets: [
         'Request Registration',
         'Product Association',
@@ -109,6 +115,8 @@ export const modules = {
       number: '04',
       icon: 'MessagesSquare' as const,
       title: 'Conversational Interaction Management',
+      description:
+        'Organize chat history, enquiry records, and interaction tracking so support and sales teams can follow every conversation.',
       bullets: [
         'Chat History',
         'Enquiry Records',
@@ -119,6 +127,8 @@ export const modules = {
       number: '05',
       icon: 'BarChart3' as const,
       title: 'Product Performance Dashboard',
+      description:
+        'Review product analytics, category distribution, and engagement insights to understand what shoppers respond to.',
       bullets: [
         'Product Analytics',
         'Category Distribution',
@@ -129,6 +139,8 @@ export const modules = {
       number: '06',
       icon: 'FolderTree' as const,
       title: 'Administration & Access Management',
+      description:
+        'Control role-based access, authenticate users, and monitor activity to keep platform operations secure and accountable.',
       bullets: [
         'Role-Based Access',
         'User Authentication',
@@ -437,8 +449,12 @@ export const contact = {
 }
 
 export const footer = {
+  eyebrow: 'Demerlo',
+  headline: 'Organized product discovery for every shopping interaction.',
   description:
     'Demerlo simplifies e-commerce product discovery through conversational shopping, organized catalogues, customer insights, and structured recommendation management.',
+  cta: 'Talk to us',
+  ctaHref: '#contact',
   columns: [
     {
       title: 'Product',

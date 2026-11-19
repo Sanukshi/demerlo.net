@@ -99,18 +99,13 @@ export function Contact() {
 
   return (
     <SectionShell id="contact" bare>
-      <div className="relative overflow-hidden rounded-panel bg-cta-gradient p-8 text-white shadow-panel md:p-10 lg:p-14">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-white/10"
-        />
+      <div className="surface-brand relative overflow-hidden rounded-panel p-8 text-white shadow-panel md:p-10 lg:p-14">
+        <div aria-hidden="true" className="section-blobs" />
+        <div aria-hidden="true" className="section-dots hidden md:block" />
 
         <div className="relative grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <Reveal>
+            <span aria-hidden="true" className="heading-bar is-on-dark" />
             <h2 className="font-heading text-[26px] font-extrabold uppercase leading-tight tracking-tight md:text-4xl lg:text-5xl">
               {contact.title}
             </h2>

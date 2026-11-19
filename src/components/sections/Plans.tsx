@@ -8,14 +8,18 @@ export function Plans() {
 
   return (
     <SectionShell id="plans" bare className="py-6 md:py-10">
-      <div className="mx-auto max-w-5xl text-center">
-        <h2 className="font-heading text-4xl font-bold tracking-tight text-navy md:text-5xl">
-          {plans.title}
-        </h2>
-        <p className="mt-3 text-sm text-muted md:text-base">{plans.subtitle}</p>
-      </div>
+      <div className="surface-tint relative overflow-hidden rounded-panel p-6 shadow-panel md:p-10 lg:p-12">
+        <div aria-hidden="true" className="section-blobs" />
+        <div aria-hidden="true" className="section-dots hidden md:block" />
+        <div className="relative mx-auto max-w-5xl text-center">
+          <span aria-hidden="true" className="heading-bar mx-auto" />
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-navy md:text-5xl">
+            {plans.title}
+          </h2>
+          <p className="mt-3 text-sm text-muted md:text-base">{plans.subtitle}</p>
+        </div>
 
-      <ul className="mx-auto mt-10 grid max-w-5xl items-stretch gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
+        <ul className="relative mx-auto mt-10 grid max-w-5xl items-stretch gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
         {plans.items.map((plan, i) => (
           <motion.li
             key={plan.name}
@@ -25,7 +29,7 @@ export function Plans() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.45, delay: i * 0.08, ease: 'easeOut' }}
           >
-            <article className="relative h-full overflow-hidden rounded-[28px] p-[3px] shadow-[0_22px_50px_rgba(31,42,55,0.10)]">
+            <article className="card-accent relative h-full overflow-hidden rounded-[28px] p-[3px] shadow-[0_22px_50px_rgba(23,22,27,0.10)]">
               <span
                 aria-hidden="true"
                 className={[
@@ -35,13 +39,13 @@ export function Plans() {
                 ].join(' ')}
                 style={reduceMotion ? undefined : { animationDelay: `${-i * 0.9}s` }}
               />
-              <div className="relative flex h-full flex-col rounded-[25px] bg-white p-2.5">
+              <div className="relative flex h-full flex-col rounded-[25px] bg-[var(--white)] p-2.5">
               <div
                 className={[
                   'rounded-[22px] px-5 pb-5 pt-5',
                   plan.highlighted
-                    ? 'bg-[linear-gradient(180deg,#E6E9F8_0%,#D5E3F6_100%)]'
-                    : 'bg-[#ECEEF2]',
+                    ? 'bg-[linear-gradient(180deg,var(--brand-tint)_0%,#dfe4fc_100%)]'
+                    : 'bg-[var(--soft-grey)]',
                 ].join(' ')}
               >
                 <span className="inline-flex rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-navy shadow-sm">
@@ -62,7 +66,7 @@ export function Plans() {
 
                 <a
                   href="#contact"
-                  className="mt-5 flex w-full items-center justify-center rounded-full bg-navy px-4 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-strong"
+                  className="mt-5 flex w-full items-center justify-center rounded-full bg-[var(--dark-section)] px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--brand)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand)]"
                 >
                   {plan.cta}
                 </a>
@@ -75,7 +79,7 @@ export function Plans() {
                       size={16}
                       strokeWidth={2.2}
                       aria-hidden="true"
-                      className="mt-0.5 shrink-0 text-navy/35"
+                      className="mt-0.5 shrink-0 text-[var(--brand)]"
                     />
                     {feature}
                   </li>
@@ -85,7 +89,8 @@ export function Plans() {
             </article>
           </motion.li>
         ))}
-      </ul>
+        </ul>
+      </div>
     </SectionShell>
   )
 }

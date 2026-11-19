@@ -6,6 +6,8 @@ type SectionShellProps = {
   className?: string
   panelClassName?: string
   bare?: boolean
+  /** white | soft | tint — only applied when not bare */
+  surface?: 'white' | 'soft' | 'tint'
 }
 
 export function SectionShell({
@@ -14,14 +16,22 @@ export function SectionShell({
   className = '',
   panelClassName = '',
   bare = false,
+  surface = 'white',
 }: SectionShellProps) {
+  const surfaceClass =
+    surface === 'soft' ? 'is-soft' : surface === 'tint' ? 'is-tint' : ''
+
   return (
-    <section id={id} className={['scroll-mt-24 px-4 md:px-6 lg:px-8', className].join(' ')}>
+    <section id={id} className={['scroll-mt-28 px-4 md:px-6 lg:px-8', className].join(' ')}>
       <div className="mx-auto max-w-site">
         {bare ? (
           children
         ) : (
-          <div className={['section-panel', panelClassName].join(' ')}>{children}</div>
+          <div
+            className={['section-panel relative', surfaceClass, panelClassName].join(' ')}
+          >
+            {children}
+          </div>
         )}
       </div>
     </section>

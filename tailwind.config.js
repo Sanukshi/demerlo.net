@@ -4,32 +4,39 @@ export default {
   theme: {
     extend: {
       colors: {
-        page: {
-          DEFAULT: '#EEF1F5',
-          light: '#F7F9FB',
+        // FocusFlow palette
+        brand: {
+          blue: '#3760F9',
+          ink: '#17161B',
+          lime: '#D2FC59',
+          lavender: '#DAD9FB',
         },
-        navy: '#1F2A37',
-        accent: '#7DB9E8',
-        lightBlue: '#7DB9E8',
-        soft: '#CFE6F7',
-        softBlue: '#CFE6F7',
-        pale: '#EAF4FC',
-        paleBlue: '#EAF4FC',
-        strong: '#2F80C9',
-        strongBlue: '#2F80C9',
-        dark: '#2B2F36',
-        darkCard: '#2B2F36',
-        muted: '#6B7785',
-        pageBg: '#EEF1F5',
+        page: {
+          DEFAULT: '#ECEBF8',
+          light: '#F6F5FE',
+        },
+        navy: '#17161B',
+        accent: '#D2FC59',
+        lightBlue: '#3760F9',
+        soft: '#DAD9FB',
+        softBlue: '#DAD9FB',
+        pale: '#DAD9FB',
+        paleBlue: '#DAD9FB',
+        strong: '#3760F9',
+        strongBlue: '#3760F9',
+        dark: '#17161B',
+        darkCard: '#17161B',
+        muted: '#6B6680',
+        pageBg: '#ECEBF8',
       },
       fontFamily: {
         heading: ['Montserrat', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        panel: '0 20px 40px rgba(31, 42, 55, 0.08)',
-        card: '0 12px 28px rgba(31, 42, 55, 0.08)',
-        lift: '0 24px 48px rgba(31, 42, 55, 0.14)',
+        panel: '0 20px 40px rgba(23, 22, 27, 0.08)',
+        card: '0 12px 28px rgba(23, 22, 27, 0.08)',
+        lift: '0 24px 48px rgba(23, 22, 27, 0.14)',
       },
       borderRadius: {
         panel: '24px',
@@ -39,13 +46,13 @@ export default {
         site: '1440px',
       },
       backgroundImage: {
-        'page-gradient': 'linear-gradient(180deg, #EEF1F5 0%, #F7F9FB 100%)',
+        'page-gradient': 'linear-gradient(180deg, #ECEBF8 0%, #F6F5FE 100%)',
         'photo-overlay':
-          'linear-gradient(135deg, rgba(47,128,201,0.55), rgba(125,185,232,0.25))',
+          'linear-gradient(135deg, rgba(55,96,249,0.55), rgba(218,217,251,0.35))',
         'blue-panel':
-          'linear-gradient(135deg, #2F80C9 0%, #5BA3D9 50%, #7DB9E8 100%)',
+          'linear-gradient(135deg, #3760F9 0%, #5B7BFA 50%, #8A9FFC 100%)',
         'cta-gradient':
-          'linear-gradient(135deg, #1F6FB8 0%, #2F80C9 45%, #7DB9E8 100%)',
+          'linear-gradient(135deg, #2A4DD4 0%, #3760F9 45%, #6B85FB 100%)',
       },
     },
   },
