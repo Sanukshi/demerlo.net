@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#EEF1F5"/>
+  <rect x="60" y="60" width="1080" height="510" rx="32" fill="#2F80C9"/>
+  <circle cx="180" cy="180" r="36" fill="#FFFFFF"/>
+  <circle cx="180" cy="180" r="24" fill="#7DB9E8"/>
+  <text x="240" y="195" font-family="Montserrat, Arial, sans-serif" font-size="48" font-weight="700" fill="#FFFFFF">DEMERLO</text>
+  <text x="120" y="320" font-family="Montserrat, Arial, sans-serif" font-size="56" font-weight="800" fill="#CFE6F7">AI PRODUCT DISCOVERY</text>
+  <text x="120" y="400" font-family="Montserrat, Arial, sans-serif" font-size="42" font-weight="700" fill="#FFFFFF">Conversational Commerce Platform</text>
+  <text x="120" y="470" font-family="Inter, Arial, sans-serif" font-size="24" fill="#EAF4FC">demerlo.net</text>
+</svg>

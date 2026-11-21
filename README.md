@@ -1,4 +1,4 @@
-# Demerlo
+;# Demerlo
 
 Product landing page for **Demerlo** (`demerlo.net`) — an AI e-commerce product discovery and recommendation management platform.
 
