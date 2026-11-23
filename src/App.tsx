@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
+import { ProductPage } from './pages/ProductPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 
 export default function App() {
@@ -7,6 +8,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path="/product" element={<ProductPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
